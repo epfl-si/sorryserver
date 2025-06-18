@@ -1,0 +1,5 @@
+- name: Sorryserver
+  hosts: all
+  gather_facts: false
+  roles:
+    - role: epfl.sorryserver

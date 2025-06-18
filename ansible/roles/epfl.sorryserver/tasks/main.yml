@@ -1,0 +1,6 @@
+- name: User tasks
+  ansible.builtin.include_tasks:
+    file: 'user.yml'
+    apply:
+      tags: sorryserver.user
+  tags: sorryserver.user

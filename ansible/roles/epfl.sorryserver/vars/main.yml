@@ -1,0 +1,1 @@
+secrets: '{{ lookup("file", "/keybase/team/epfl_sorry/{{ inventory_environment }}/secrets.yml") | from_yaml }}'
