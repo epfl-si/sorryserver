@@ -16,3 +16,23 @@
     group: root
     mode: '0644'
   notify: Reload nginx
+
+- name: Create vhosts directory
+  ansible.builtin.file:
+    path: /var/www/vhosts/
+    state: directory
+    mode: '0755'
+    owner: kis
+    group: kis
+
+- name: Set SELinux permission
+  community.general.sefcontext:
+    target: '/var/www/vhosts(/.*)?'
+    setype: httpd_sys_content_t
+    reload: true
+    state: present
+  register: filecontext
+
+- name: Run restore context to reload selinux
+  ansible.builtin.command: restorecon -R -v /var/www/vhosts/
+  changed_when: filecontext.changed
