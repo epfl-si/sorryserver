@@ -12,6 +12,13 @@
       tags: sorryserver.ssh
   tags: sorryserver.ssh
 
+- name: Python tasks
+  ansible.builtin.include_tasks:
+    file: 'python.yml'
+    apply:
+      tags: sorryserver.python
+  tags: sorryserver.python
+
 - name: Nginx tasks
   ansible.builtin.include_tasks:
     file: 'nginx.yml'

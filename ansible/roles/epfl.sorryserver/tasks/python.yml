@@ -1,0 +1,14 @@
+- name: Install python packages
+  ansible.builtin.package:
+    state: present
+    name: '{{ item }}'
+  with_items:
+    - python3.12
+    - libselinux-python3
+
+- name: Set python 3.12 as default
+  community.general.alternatives:
+    name: python
+    path: /usr/bin/python3.12
+    link: /usr/bin/python
+    state: auto
