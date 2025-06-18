@@ -19,3 +19,5 @@ team_members:
     state: present
 
 secrets: '{{ lookup("file", "/keybase/team/epfl_sorry/{{ inventory_environment }}/secrets.yml") | from_yaml }}'
+
+nginx_config_path: '/keybase/team/epfl_sorry/{{ inventory_environment }}/nginx.conf'

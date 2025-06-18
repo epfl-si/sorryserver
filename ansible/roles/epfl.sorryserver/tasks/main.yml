@@ -11,3 +11,10 @@
     apply:
       tags: sorryserver.ssh
   tags: sorryserver.ssh
+
+- name: Nginx tasks
+  ansible.builtin.include_tasks:
+    file: 'nginx.yml'
+    apply:
+      tags: sorryserver.nginx
+  tags: sorryserver.nginx
