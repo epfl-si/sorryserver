@@ -1,0 +1,74 @@
+#!/bin/bash
+#
+# This is a wrapper around ansible / ansible-playbook.
+#
+# Usage ("ansible-playbook" mode):
+#
+#   ./ansible/sorryserversible
+#
+# If you are unfamiliar with Ansible, read up on it at
+# - https://www.ansible.com/overview/how-ansible-works
+# - https://github.com/jdauphant/awesome-ansible
+
+set -e
+cd "$(cd "$(dirname "$0")"; pwd)"
+
+help () {
+    fatal <<HELP_MSG
+Usage: $0 [options]
+
+Environment options:
+  --staging     Deploy to staging environment.
+  --prod        Deploy to production environment.
+
+Common options:
+  --list-tags      List all available tags.
+  --list-tasks     List all tasks that would be executed.
+
+Examples:
+  $0 --prod
+  $0 --prod -t sorryserver.web.restart
+HELP_MSG
+}
+
+ensure_ansible () {
+  if ! test -f ansible-deps-cache/.versions 2>/dev/null; then
+    curl https://raw.githubusercontent.com/epfl-si/ansible.suitcase/master/install.sh | \
+      SUITCASE_DIR=$PWD/ansible-deps-cache \
+      SUITCASE_ANSIBLE_VERSION=10.7.0 \
+      SUITCASE_ANSIBLE_REQUIREMENTS=requirements.yml \
+      SUITCASE_PIP_EXTRA="ansible-lint kubernetes" \
+      bash -x
+  fi
+
+  . ansible-deps-cache/lib.sh
+  ensure_ansible_runtime
+}
+
+ensure_ansible
+
+declare -a ansible_args
+inventory_mode="staging"
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    --help)
+      help ;;
+    --staging)
+      shift ;;
+    --prod)
+      inventory_mode="prod"
+      shift ;;
+    *)
+      ansible_args+=("$1")
+      shift ;;
+  esac
+done
+
+inventories () {
+  case "$inventory_mode" in
+    staging) echo "-i inventory/staging.yml" ;;
+    prod) echo "-i inventory/prod.yml" ;;
+  esac
+}
+
+ansible-playbook $(inventories) playbook.yml "${ansible_args[@]}"
