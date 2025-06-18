@@ -25,3 +25,10 @@
     apply:
       tags: sorryserver.nginx
   tags: sorryserver.nginx
+
+- name: Firewalld tasks
+  ansible.builtin.include_tasks:
+    file: 'firewalld.yml'
+    apply:
+      tags: sorryserver.firewalld
+  tags: sorryserver.firewalld
