@@ -1,1 +1,21 @@
+team_members:
+  - name: domq
+    state: present
+  - name: dragonleman
+    state: present
+  - name: jdelasoie
+    state: present
+  - name: multiscan
+    state: present
+  - name: lvenries
+    state: present
+  - name: obieler
+    state: present
+  - name: ponsfrilus
+    state: present
+  - name: rosamaggi
+    state: present
+  - name: williambelle
+    state: present
+
 secrets: '{{ lookup("file", "/keybase/team/epfl_sorry/{{ inventory_environment }}/secrets.yml") | from_yaml }}'

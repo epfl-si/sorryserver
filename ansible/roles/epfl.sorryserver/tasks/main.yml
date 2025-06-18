@@ -4,3 +4,10 @@
     apply:
       tags: sorryserver.user
   tags: sorryserver.user
+
+- name: SSH tasks
+  ansible.builtin.include_tasks:
+    file: 'ssh.yml'
+    apply:
+      tags: sorryserver.ssh
+  tags: sorryserver.ssh
