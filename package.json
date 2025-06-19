@@ -1,0 +1,16 @@
+{
+  "name": "epfl-sorryserver",
+  "private": true,
+  "version": "0.0.1",
+  "description": "EPFL Maintenance page",
+  "homepage": "https://github.com/epfl-si/sorryserver#readme",
+  "bugs": {
+    "url": "https://github.com/epfl-si/sorryserver/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/epfl-si/sorryserver.git"
+  },
+  "license": "MIT",
+  "author": "William Belle <william.belle@gmail.com>"
+}
