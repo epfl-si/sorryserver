@@ -12,5 +12,14 @@
     "url": "git+https://github.com/epfl-si/sorryserver.git"
   },
   "license": "MIT",
-  "author": "William Belle <william.belle@gmail.com>"
+  "author": "William Belle <william.belle@gmail.com>",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "parcel": "^2.14.0"
+  }
 }
