@@ -14,12 +14,22 @@
   "license": "MIT",
   "author": "William Belle <william.belle@gmail.com>",
   "source": "src/index.html",
+  "parcelIgnore": [
+    "icon-teaser-video.svg",
+    "icon-course-exercise.svg",
+    "icon-course-project.svg"
+  ],
   "scripts": {
     "start": "parcel",
+    "prebuild": "rm -rf dist",
     "build": "parcel build"
   },
-  "dependencies": {},
   "devDependencies": {
-    "parcel": "^2.14.0"
+    "@parcel/optimizer-data-url": "^2.15.2",
+    "@parcel/transformer-inline-string": "^2.15.2",
+    "epfl-elements": "^5.3.0",
+    "parcel": "^2.14.0",
+    "parcel-resolver-ignore": "^2.2.0",
+    "posthtml-include": "^2.0.1"
   }
 }
