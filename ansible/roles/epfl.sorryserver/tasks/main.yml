@@ -39,3 +39,10 @@
     apply:
       tags: sorryserver.sorryserver
   tags: sorryserver.sorryserver
+
+- name: Edu tasks
+  ansible.builtin.include_tasks:
+    file: 'edu.yml'
+    apply:
+      tags: sorryserver.edu
+  tags: sorryserver.edu

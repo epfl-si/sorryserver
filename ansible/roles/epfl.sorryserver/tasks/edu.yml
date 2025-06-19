@@ -1,0 +1,30 @@
+- name: Allow edu SSH kis access
+  ansible.posix.authorized_key:
+    user: kis
+    state: present
+    key: '{{ ssh_key }}'
+    key_options: 'from="10.95.96.0/20"'
+
+- name: Create edu directories
+  ansible.builtin.file:
+    path: '/var/www/vhosts/{{ item }}/'
+    state: directory
+    mode: '0755'
+    owner: kis
+    group: kis
+  with_items:
+    - edu.epfl.ch_blue
+    - edu.epfl.ch_green
+    - tmp
+
+- name: Check edu.epfl.ch symlink
+  ansible.builtin.stat:
+    path: /var/www/vhosts/edu.epfl.ch
+  register: links
+
+- name: Create edu.epfl.ch symlink
+  ansible.builtin.file:
+    src: /var/www/vhosts/edu.epfl.ch_blue/
+    dest: /var/www/vhosts/edu.epfl.ch
+    state: link
+  when: links.stat.islnk is not defined
