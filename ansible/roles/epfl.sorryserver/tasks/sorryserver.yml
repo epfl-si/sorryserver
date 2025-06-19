@@ -1,0 +1,24 @@
+- name: Create sorryserver.epfl.ch directory
+  ansible.builtin.file:
+    path: /var/www/vhosts/sorryserver.epfl.ch/
+    state: directory
+    mode: '0755'
+    owner: kis
+    group: kis
+
+- name: Copy sorryserver index.html
+  ansible.builtin.copy:
+    dest: /var/www/vhosts/sorryserver.epfl.ch/index.html
+    src: '{{ playbook_dir }}/../dist/index.html'
+    owner: kis
+    group: kis
+    mode: '0644'
+
+- name: Add sorryserver configuration file
+  ansible.builtin.copy:
+    dest: /etc/nginx/conf.d/sorryserver.conf
+    src: '{{ sorryserver_config_path }}'
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Reload nginx

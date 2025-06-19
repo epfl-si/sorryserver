@@ -21,3 +21,6 @@ team_members:
 secrets: '{{ lookup("file", "/keybase/team/epfl_sorry/{{ inventory_environment }}/secrets.yml") | from_yaml }}'
 
 nginx_config_path: '/keybase/team/epfl_sorry/{{ inventory_environment }}/nginx.conf'
+sorryserver_config_path: '/keybase/team/epfl_sorry/{{ inventory_environment }}/sorryserver.conf'
+
+ssh_key: '{{ lookup("file", "/keybase/team/epfl_sorry/{{ inventory_environment }}/id-rsa.pub") }}'
