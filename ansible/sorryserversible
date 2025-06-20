@@ -27,7 +27,7 @@ Common options:
 
 Examples:
   $0 --prod
-  $0 --prod -t sorryserver.web.restart
+  $0 --prod -t sorryserver.nginx
 HELP_MSG
 }
 
