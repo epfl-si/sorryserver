@@ -1,5 +1,5 @@
 - name: Add user kis
   ansible.builtin.user:
-   name: kis
-   password: '{{ secrets.user.password | password_hash("sha512", secrets.user.salt) }}'
-   update_password: on_create
+    name: kis
+    password: '{{ secrets.user.password | password_hash("sha512", secrets.user.salt) }}'
+    update_password: on_create
