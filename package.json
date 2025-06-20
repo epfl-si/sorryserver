@@ -22,7 +22,11 @@
   "scripts": {
     "start": "parcel",
     "prebuild": "rm -rf dist",
-    "build": "parcel build"
+    "build": "parcel build",
+    "deploy:staging": "scp dist/index.html kis@itswbhst0029.xaas.epfl.ch:/var/www/vhosts/sorryserver.epfl.ch/",
+    "deploy:prod1": "scp dist/index.html kis@itswbhst0003.xaas.epfl.ch:/var/www/vhosts/sorryserver.epfl.ch/",
+    "deploy:prod2": "scp dist/index.html kis@itswbhst0004.xaas.epfl.ch:/var/www/vhosts/sorryserver.epfl.ch/",
+    "deploy:prod": "npm run deploy:prod1 && npm run deploy:prod2"
   },
   "devDependencies": {
     "@parcel/optimizer-data-url": "^2.15.2",
