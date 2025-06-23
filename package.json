@@ -20,8 +20,9 @@
     "icon-course-project.svg"
   ],
   "scripts": {
-    "start": "parcel",
-    "prebuild": "rm -rf dist",
+    "purgecss": "purgecss -c purgecss.config -o src",
+    "start": "npm run purgecss && parcel",
+    "prebuild": "rm -rf dist && npm run purgecss",
     "build": "parcel build",
     "deploy:staging": "scp dist/index.html kis@itswbhst0029.xaas.epfl.ch:/var/www/vhosts/sorryserver.epfl.ch/",
     "deploy:prod1": "scp dist/index.html kis@itswbhst0003.xaas.epfl.ch:/var/www/vhosts/sorryserver.epfl.ch/",
@@ -29,6 +30,7 @@
     "deploy:prod": "npm run deploy:prod1 && npm run deploy:prod2"
   },
   "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^6.0.0",
     "@parcel/optimizer-data-url": "^2.15.2",
     "@parcel/transformer-inline-string": "^2.15.2",
     "epfl-elements": "^5.3.0",
